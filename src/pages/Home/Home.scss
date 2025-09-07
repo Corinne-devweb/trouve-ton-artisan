@@ -1,0 +1,198 @@
+@import '../../styles/variables';
+
+.home-page {
+  padding-top: 40px;
+  background-color: #F1F8FC;
+
+  // Section Hero
+  .hero-section {
+    padding: 20px 0;
+    text-align: center;
+    background-color: #F1F8FC;
+
+    .hero-title {
+      font-size: $font-size-h1;
+      font-weight: bold;
+      color: $title-color;
+      margin-bottom: $spacer-md;
+      font-family: $font-family-base;
+      background-color: #F1F8FC;
+      display: inline-block;
+      padding: 0 10px;
+    }
+  }
+
+  // Section Comment ça marche
+  .how-it-works {
+    padding-top: $spacer-xxl;
+    padding-bottom: $spacer-md; // réduit l'espace entre les sections
+    background: transparent;
+
+    .section-title {
+      text-align: center;
+      font-size: $font-size-h2;
+      color: $title-color;
+      margin-bottom: $spacer-sm;
+      font-weight: 600;
+      font-family: $font-family-base;
+    }
+
+    .steps-row {
+      margin-top: $spacer-md;
+
+      .step-card {
+        border: 2px solid #e3f2fd;
+        border-radius: $border-radius-lg;
+        transition: all 0.3s ease;
+        height: 320px; // hauteur fixe pour aligner tous les titres
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; // le titre reste en haut
+        padding-top: $spacer-md;
+
+        &:hover {
+          border-color: $primary-blue;
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px rgba(0, 116, 199, 0.15);
+        }
+
+        .card-body {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          height: 100%;
+          padding: 0;
+        }
+
+        .step-title {
+          font-size: $font-size-lg + 0.025rem;
+          font-weight: bold;
+          color: $title-color;
+          margin-bottom: $spacer-md;
+          border-bottom: 2px solid $primary-blue;
+          padding-bottom: $spacer-sm;
+          width: fit-content;
+          font-family: $font-family-base;
+          text-align: center;
+        }
+
+        .step-icon {
+          margin: $spacer-sm 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          img {
+            width: 60px;    // taille par défaut
+            height: 60px;
+            object-fit: contain;
+          }
+        }
+
+        // Agrandir uniquement les images des étapes 1 et 2
+        &:nth-child(1) .step-icon img,
+        &:nth-child(2) .step-icon img {
+          width: 130px;
+          height: 130px;
+        }
+
+        .step-description {
+          text-align: center;
+          color: $text-primary;
+          line-height: 1.4;
+          font-size: $font-size-sm + 0.025rem;
+          margin: $spacer-sm 0 0 0;
+          font-family: $font-family-base;
+        }
+      }
+    }
+  }
+
+  // Section Artisans vedettes
+  .featured-artisans {
+    padding-top: $spacer-md;
+    padding-bottom: $spacer-xl;
+    background: transparent;
+
+    .section-title {
+      text-align: center;
+      font-size: $font-size-h2;
+      color: $title-color;
+      margin-bottom: $spacer-lg;
+      font-weight: 600;
+      font-family: $font-family-base;
+    }
+
+    .artisan-card.featured-card {
+      box-shadow: 0 4px 15px rgba(0, 116, 199, 0.2);
+    }
+  }
+
+  // Responsive
+  @media (max-width: $breakpoint-md) {
+    padding-top: 40px;
+
+    .hero-section .hero-title {
+      font-size: $font-size-h2;
+    }
+
+    .section-title {
+      font-size: $font-size-h3 !important;
+    }
+
+    .how-it-works {
+      padding-bottom: $spacer-sm;
+    }
+
+    .featured-artisans {
+      padding-top: $spacer-sm;
+      padding-bottom: $spacer-md;
+    }
+
+    .step-card {
+      height: 280px;
+
+      .step-icon img {
+        width: 60px;
+        height: 60px;
+      }
+
+      &:nth-child(1) .step-icon img,
+      &:nth-child(2) .step-icon img {
+        width: 110px;
+        height: 110px;
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    .hero-section .hero-title {
+      font-size: $font-size-h3;
+    }
+
+    .step-card {
+      height: 250px;
+
+      .step-title {
+        font-size: $font-size-base;
+      }
+
+      .step-description {
+        font-size: $font-size-sm - 0.025rem;
+      }
+
+      .step-icon img {
+        width: 50px;
+        height: 50px;
+      }
+
+      &:nth-child(1) .step-icon img,
+      &:nth-child(2) .step-icon img {
+        width: 90px;
+        height: 90px;
+      }
+    }
+  }
+}

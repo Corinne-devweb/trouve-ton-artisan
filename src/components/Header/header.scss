@@ -1,0 +1,45 @@
+@import './../../styles/variables'; // Assure-toi que tes variables SASS sont importées
+.site-header {
+  background-color: #f1f8fc;
+  max-height: 110px;
+  width: 100%;
+
+  .logo-image {
+    max-height: 80px; /* plus gros que le footer */
+    width: auto;
+  }
+
+  .nav-link-custom {
+    margin: 0 25px;
+    font-weight: 500;
+    color: #384050;
+
+    &:hover {
+      color: #0074c7;
+    }
+  }
+
+  .search-input {
+    height: 38px;
+    border-radius: 4px 0 0 4px;
+    border: 1px solid #dee2e6;
+  }
+
+  .search-button {
+    height: 38px;
+    border-radius: 0 4px 4px 0;
+    border: 1px solid #dee2e6;
+    background-color: #0074c7;
+    color: white;
+
+    &:hover {
+      background-color: #00497c;
+    }
+  }
+
+  .navbar-toggler {
+    font-size: 24px; /* hamburger ou croix */
+    border: none;
+    background: transparent;
+  }
+}

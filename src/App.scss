@@ -1,0 +1,144 @@
+// Import des styles principaux
+@import './styles/variables';
+
+// Styles globaux pour l'application
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .main-content {
+    flex: 1;
+    padding-top: 0;
+  }
+}
+
+// Styles globaux
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-fallback; // Utilise la police de fallback en attendant Graphik
+  line-height: 1.6;
+  color: $text-primary;
+  background-color: $bg-primary; // Fond bleu clair #f1f8fc
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Styles des liens globaux
+a {
+  color: $primary-blue;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $secondary-blue;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 2px solid $primary-blue;
+    outline-offset: 2px;
+  }
+}
+
+// Styles des titres
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: $spacer-md;
+  color: $title-color; // #00497c pour tous les titres selon la maquette
+}
+
+h1 { font-size: $font-size-h1; }
+h2 { font-size: $font-size-h2; }
+h3 { font-size: $font-size-h3; }
+h4 { font-size: $font-size-h4; }
+h5 { font-size: $font-size-h5; }
+h6 { font-size: $font-size-h6; }
+
+// Styles des paragraphes
+p {
+  margin-bottom: $spacer-md;
+  line-height: 1.6;
+}
+
+// Personnalisation des boutons Bootstrap
+.btn {
+  border-radius: $border-radius;
+  font-weight: 500;
+  padding: $spacer-sm $spacer-lg;
+  transition: all 0.3s ease;
+  border-width: 2px;
+
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba($primary-blue, 0.25);
+  }
+}
+
+.btn-primary {
+  background-color: $primary-blue;
+  border-color: $primary-blue;
+
+  &:hover {
+    background-color: $secondary-blue;
+    border-color: $secondary-blue;
+  }
+}
+
+.btn-outline-primary {
+  color: $primary-blue;
+  border-color: $primary-blue;
+
+  &:hover {
+    background-color: $primary-blue;
+    border-color: $primary-blue;
+    color: $white;
+  }
+}
+
+// Classes utilitaires
+.text-primary-custom {
+  color: $primary-blue !important;
+}
+
+.text-secondary-custom {
+  color: $accent-red !important;
+}
+
+.bg-primary-custom {
+  background-color: $primary-blue !important;
+}
+
+.bg-secondary-custom {
+  background-color: $light-blue !important;
+}
+
+// Responsive utilities
+@media (max-width: $breakpoint-sm) {
+  h1 { font-size: $font-size-h2; }
+  h2 { font-size: $font-size-h3; }
+  h3 { font-size: $font-size-h4; }
+}
+
+// Accessibilité
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}

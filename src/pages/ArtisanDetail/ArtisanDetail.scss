@@ -1,0 +1,325 @@
+@import '../../styles/variables';
+
+.artisan-detail-page {
+  background-color: $bg-primary; // #f1f8fc
+  min-height: calc(100vh - 200px);
+  padding: $spacer-xxl 0;
+
+  // En-tête de la page
+  .page-header {
+    margin-bottom: $spacer-xxl;
+
+    .page-title {
+      font-size: $font-size-h1;
+      color: $title-color; // #00497c
+      font-weight: 700;
+      margin-bottom: 0;
+      letter-spacing: 1px;
+
+      @media (max-width: $breakpoint-md) {
+        font-size: $font-size-h2;
+      }
+
+      @media (max-width: $breakpoint-sm) {
+        font-size: $font-size-h3;
+      }
+    }
+  }
+
+  // Carte de profil de l'artisan
+  .artisan-profile-card {
+    background-color: $bg-card; // Fond blanc
+    border: 1px solid #e0e0e0;
+    border-radius: $border-radius-lg;
+    box-shadow: $box-shadow;
+    margin-bottom: $spacer-xl;
+
+    .profile-body {
+      padding: $spacer-xxl;
+
+      @media (max-width: $breakpoint-md) {
+        padding: $spacer-xl;
+      }
+
+      @media (max-width: $breakpoint-sm) {
+        padding: $spacer-lg;
+      }
+    }
+
+    // Image de l'artisan
+    .artisan-image-container {
+      .artisan-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid $light-blue;
+        box-shadow: $box-shadow;
+
+        @media (max-width: $breakpoint-md) {
+          width: 150px;
+          height: 150px;
+        }
+
+        @media (max-width: $breakpoint-sm) {
+          width: 120px;
+          height: 120px;
+        }
+      }
+    }
+
+    // Informations de l'artisan
+    .artisan-info {
+      .artisan-name {
+        font-size: $font-size-h2;
+        color: $text-primary; // #384050
+        font-weight: 700;
+        margin-bottom: $spacer-sm;
+
+        @media (max-width: $breakpoint-md) {
+          font-size: $font-size-h3;
+          text-align: center;
+        }
+      }
+
+      .artisan-specialty {
+        font-size: $font-size-lg;
+        color: $text-primary; // #384050
+        font-weight: 500;
+        margin-bottom: $spacer-md;
+
+        @media (max-width: $breakpoint-md) {
+          text-align: center;
+        }
+      }
+
+      // Rating avec étoiles
+      .rating-display {
+        display: flex;
+        align-items: center;
+        margin-bottom: $spacer-md;
+        gap: $spacer-sm;
+
+        @media (max-width: $breakpoint-md) {
+          justify-content: center;
+        }
+
+        .stars {
+          display: flex;
+          align-items: center;
+
+          .star {
+            font-size: $font-size-base;
+            margin-right: 3px;
+            color: $star-color; // #384050
+
+            &.star-full,
+            &.star-half {
+              color: $star-color;
+            }
+
+            &.star-empty {
+              color: $star-empty-color;
+            }
+          }
+        }
+
+        .rating-text {
+          font-size: $font-size-sm;
+          color: $text-primary;
+          font-weight: 500;
+        }
+      }
+
+      .artisan-location {
+        font-size: $font-size-lg;
+        color: $text-primary;
+        margin-bottom: $spacer-xl;
+        font-weight: 500;
+
+        @media (max-width: $breakpoint-md) {
+          text-align: center;
+        }
+      }
+
+      // Section À propos
+      .about-section {
+        margin-bottom: $spacer-xl;
+
+        h4 {
+          font-size: $font-size-h4;
+          color: $text-primary;
+          font-weight: 600;
+          margin-bottom: $spacer-md;
+        }
+
+        .about-text {
+          font-size: $font-size-base;
+          color: $text-primary;
+          line-height: 1.7;
+          text-align: justify;
+        }
+      }
+
+      // Site internet
+      .website-section {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: $spacer-xs;
+
+        @media (max-width: $breakpoint-md) {
+          justify-content: center;
+        }
+
+        .website-icon {
+          color: $text-primary;
+          font-size: $font-size-base;
+        }
+
+        .website-label {
+          font-size: $font-size-base;
+          color: $text-primary;
+          font-weight: 500;
+        }
+
+        .website-link {
+          color: $primary-blue;
+          text-decoration: none;
+          font-size: $font-size-base;
+          
+          &:hover {
+            color: $secondary-blue;
+            text-decoration: underline;
+          }
+
+          &:focus {
+            outline: 2px solid $primary-blue;
+            outline-offset: 2px;
+          }
+        }
+      }
+    }
+  }
+
+  // Formulaire de contact
+  .contact-form-card {
+    background: linear-gradient(135deg, $primary-blue 0%, $secondary-blue 100%);
+    border: none;
+    border-radius: $border-radius-lg;
+    box-shadow: $box-shadow-lg;
+
+    .card-body {
+      padding: $spacer-xxl;
+
+      @media (max-width: $breakpoint-md) {
+        padding: $spacer-xl;
+      }
+
+      @media (max-width: $breakpoint-sm) {
+        padding: $spacer-lg;
+      }
+    }
+
+    .contact-title {
+      color: $white;
+      font-size: $font-size-h3;
+      font-weight: 600;
+      margin-bottom: $spacer-xl;
+      text-align: center;
+    }
+
+    // Styles du formulaire
+    .form-label {
+      color: $white;
+      font-weight: 500;
+      margin-bottom: $spacer-sm;
+    }
+
+    .form-control {
+      border: none;
+      border-radius: $border-radius;
+      padding: $spacer-md;
+      font-size: $font-size-base;
+      background-color: $white;
+      
+      &:focus {
+        border: 2px solid $white;
+        box-shadow: none;
+        outline: none;
+      }
+
+      &::placeholder {
+        color: $text-muted;
+      }
+    }
+
+    .submit-button {
+      background-color: $warning-gray;
+      border: none;
+      color: $white;
+      font-size: $font-size-base;
+      font-weight: 700;
+      padding: $spacer-md $spacer-xxl;
+      border-radius: $border-radius;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: rgba($warning-gray, 0.8);
+        transform: translateY(-2px);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 0.25rem rgba($white, 0.5);
+        outline: none;
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: $breakpoint-lg) {
+  .artisan-detail-page {
+    padding: $spacer-xl 0;
+
+    .page-header {
+      margin-bottom: $spacer-xl;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .artisan-detail-page {
+    padding: $spacer-lg 0;
+
+    .page-header {
+      margin-bottom: $spacer-lg;
+    }
+
+    .artisan-profile-card {
+      .artisan-info {
+        text-align: center;
+
+        .about-section {
+          .about-text {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Accessibilité
+@media (prefers-reduced-motion: reduce) {
+  .artisan-detail-page {
+    .submit-button {
+      transition: none;
+
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+}

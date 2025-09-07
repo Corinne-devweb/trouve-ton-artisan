@@ -1,0 +1,141 @@
+@import '../../styles/variables';
+.artisan-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  border: 1px solid #e3f2fd;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 116, 199, 0.15);
+  }
+
+  .card-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+  }
+
+.card-image-container {
+  width: 100%;
+  overflow: hidden;
+
+  .card-image {
+    width: 100%;        // prend toute la largeur de la carte
+    height: auto;       // garde le ratio original
+    display: block;
+    object-fit: cover;  // remplit le conteneur et rogne si nécessaire
+  }
+
+
+
+    .image-fallback {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #777;
+      text-align: center;
+      padding: 0.5rem;
+    }
+  }
+
+  .card-body-custom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    flex-grow: 1;
+  }
+
+  .artisan-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  .rating-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5rem 0;
+
+    .stars {
+      display: flex;
+      gap: 0.2rem;
+      margin-bottom: 0.25rem;
+
+      .star {
+        font-size: 1rem;
+        color: #f1c40f;
+      }
+
+      .star-empty {
+        color: #ccc;
+      }
+    }
+
+    .rating-text {
+      font-size: 0.9rem;
+      color: #666;
+    }
+  }
+
+  .artisan-specialty {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0.5rem 0;
+    color: #444;
+  }
+
+  .artisan-location {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.5rem;
+
+    .location-icon {
+      margin-right: 0.3rem;
+      color: #0074c7;
+    }
+  }
+
+  .artisan-description {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .artisan-card {
+    .card-image-container {
+      height: 160px;
+    }
+
+    .artisan-name {
+      font-size: 1rem;
+    }
+
+    .artisan-specialty,
+    .artisan-location,
+    .rating-text {
+      font-size: 0.85rem;
+    }
+  }
+}

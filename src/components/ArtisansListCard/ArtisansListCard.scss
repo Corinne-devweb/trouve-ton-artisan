@@ -1,0 +1,196 @@
+@import '../../styles/variables';
+
+.artisan-list-card {
+  background: linear-gradient(135deg, $primary-blue 0%, $secondary-blue 100%);
+  border: none;
+  border-radius: $border-radius-lg;
+  box-shadow: $box-shadow;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  margin-bottom: $spacer-lg;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $box-shadow-lg;
+  }
+
+  .card-body-custom {
+    padding: $spacer-lg;
+  }
+
+  .image-col {
+    .artisan-image-container {
+      width: 100%;
+      height: 120px;
+      border-radius: $border-radius;
+      overflow: hidden;
+      background-color: rgba($white, 0.1);
+
+      .artisan-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: $border-radius;
+      }
+    }
+  }
+
+  .info-col {
+    .artisan-info {
+      color: $white;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .artisan-name {
+        font-size: $font-size-xl;
+        font-weight: 600;
+        color: $white;
+        margin-bottom: $spacer-sm;
+        line-height: 1.2;
+      }
+
+      .artisan-specialty {
+        font-size: $font-size-sm;
+        color: rgba($white, 0.9);
+        margin-bottom: $spacer-sm;
+        font-weight: 500;
+      }
+
+      .rating-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: $spacer-sm;
+        flex-wrap: wrap;
+        gap: $spacer-xs;
+
+        .stars {
+          display: flex;
+          align-items: center;
+
+          .star {
+            font-size: $font-size-sm;
+            margin-right: 2px;
+            color: #ffc107; // Étoiles en jaune sur fond bleu
+
+            &.star-full,
+            &.star-half {
+              color: #ffc107;
+            }
+
+            &.star-empty {
+              color: rgba($white, 0.3);
+            }
+          }
+        }
+
+        .rating-text {
+          font-size: $font-size-xs;
+          color: rgba($white, 0.8);
+          white-space: nowrap;
+        }
+      }
+
+      .artisan-location {
+        font-size: $font-size-sm;
+        color: rgba($white, 0.9);
+        margin-bottom: $spacer-md;
+      }
+
+      .profile-button {
+        background-color: rgba($warning-gray, 0.9);
+        border: none;
+        color: $white;
+        font-size: $font-size-sm;
+        font-weight: 600;
+        padding: $spacer-sm $spacer-lg;
+        border-radius: $border-radius;
+        align-self: flex-start;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: $warning-gray;
+          transform: translateY(-2px);
+        }
+
+        &:focus {
+          box-shadow: 0 0 0 0.25rem rgba($white, 0.5);
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: $breakpoint-md) {
+  .artisan-list-card {
+    .card-body-custom {
+      padding: $spacer-md;
+    }
+
+    .image-col {
+      .artisan-image-container {
+        height: 100px;
+      }
+    }
+
+    .info-col {
+      .artisan-info {
+        .artisan-name {
+          font-size: $font-size-lg;
+          margin-bottom: $spacer-xs;
+        }
+
+        .artisan-specialty,
+        .artisan-location {
+          font-size: $font-size-xs;
+          margin-bottom: $spacer-xs;
+        }
+
+        .rating-container {
+          margin-bottom: $spacer-xs;
+        }
+
+        .profile-button {
+          font-size: $font-size-xs;
+          padding: $spacer-xs $spacer-md;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .artisan-list-card {
+    .card-body-custom {
+      padding: $spacer-sm;
+    }
+
+    .image-col {
+      .artisan-image-container {
+        height: 80px;
+      }
+    }
+  }
+}
+
+// Accessibilité
+@media (prefers-reduced-motion: reduce) {
+  .artisan-list-card {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+
+    .profile-button {
+      transition: none;
+
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+}

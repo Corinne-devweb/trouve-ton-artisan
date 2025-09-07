@@ -1,0 +1,95 @@
+// Couleurs de la région Auvergne-Rhône-Alpes
+// Palette officielle fournie
+
+// Couleurs principales
+$primary-blue: #0074c7;        // Bleu principal
+$secondary-blue: #00497c;      // Bleu secondaire (plus foncé)
+$light-blue: #f1f8fc;          // Bleu très clair (fond / background)
+
+// Couleurs d'accent et d'état
+$accent-red: #cd2c2e;          // Rouge accent (alertes / erreurs)
+$success-green: #82b864;       // Vert (validations / succès)
+$warning-gray: #384050;        // Gris foncé (titres, neutral, alertes)
+
+// Couleurs neutres
+$white: #ffffff;               // Ajouté pour les cartes d'artisans
+$light-gray: #f8f9fa;
+$gray: #6c757d;
+$dark-gray: $warning-gray;     // Utilise le gris officiel
+$black: #212529;
+
+// Couleurs de texte selon la maquette
+$text-primary: $warning-gray;   // #384050 pour l'écriture dans les cartes et étoiles
+$text-secondary: $dark-gray;
+$text-muted: $gray;
+$text-light: $white;
+
+// Couleurs de fond selon la maquette
+$bg-primary: $light-blue;       // #f1f8fc fond de page principal
+$bg-secondary: $light-blue;     // Utilise le bleu clair officiel
+$bg-dark: $primary-blue;        // #0074c7 fond du footer
+$bg-card: $white;              // #ffffff fond des cartes
+
+// Police principale (Graphik)
+// En attendant le téléchargement de Graphik, utilisons une alternative
+$font-family-base: 'Graphik', 'Helvetica Neue', Arial, sans-serif;
+$font-family-fallback: 'Helvetica Neue', Arial, sans-serif;
+
+// Tailles de police
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;   // 14px
+$font-size-base: 1rem;     // 16px
+$font-size-lg: 1.125rem;   // 18px
+$font-size-xl: 1.25rem;    // 20px
+$font-size-xxl: 1.5rem;    // 24px
+$font-size-h1: 2.5rem;     // 40px
+$font-size-h2: 2rem;       // 32px
+$font-size-h3: 1.75rem;    // 28px
+$font-size-h4: 1.5rem;     // 24px
+$font-size-h5: 1.25rem;    // 20px
+$font-size-h6: 1rem;       // 16px
+
+// Espacements
+$spacer: 1rem;
+$spacer-xs: $spacer * 0.25;  // 4px
+$spacer-sm: $spacer * 0.5;   // 8px
+$spacer-md: $spacer;         // 16px
+$spacer-lg: $spacer * 1.5;   // 24px
+$spacer-xl: $spacer * 2;     // 32px
+$spacer-xxl: $spacer * 3;    // 48px
+
+// Bordures
+$border-width: 1px;
+$border-color: #dee2e6;
+$border-radius: 0.375rem;    // 6px
+$border-radius-sm: 0.25rem;  // 4px
+$border-radius-lg: 0.5rem;   // 8px
+
+// Ombres
+$box-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+$box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+$box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+
+// Breakpoints (Mobile First)
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+
+// Z-index
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;
+
+// Étoiles de notation selon la maquette
+$star-color: $warning-gray;     // #384050 pour les étoiles pleines
+$star-empty-color: #e4e5e9;
+
+// Couleurs spécifiques selon la maquette
+$title-color: $secondary-blue;  // #00497c pour les titres principaux
+$footer-bg: $primary-blue;      // #0074c7 pour le fond du footer

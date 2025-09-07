@@ -1,0 +1,172 @@
+@import '../../styles/variables';
+
+.artisans-list-page {
+  background-color: $bg-primary; // Fond bleu clair #f1f8fc
+  min-height: calc(100vh - 200px); // Hauteur minimale
+  padding: $spacer-xxl 0;
+
+  // En-tête de la page
+  .page-header {
+    margin-bottom: $spacer-xxl;
+
+    .page-title {
+      font-size: $font-size-h1;
+      color: $title-color; // #00497c selon la maquette
+      font-weight: 700;
+      margin-bottom: $spacer-xl;
+      letter-spacing: 1px;
+
+      @media (max-width: $breakpoint-md) {
+        font-size: $font-size-h2;
+      }
+
+      @media (max-width: $breakpoint-sm) {
+        font-size: $font-size-h3;
+        margin-bottom: $spacer-lg;
+      }
+    }
+  }
+
+  // Barre de recherche centrale
+  .search-form-center {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $spacer-xxl;
+
+    .search-container {
+      display: flex;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: $box-shadow;
+      border-radius: $border-radius-lg;
+      overflow: hidden;
+      background-color: $white;
+
+      .search-input-center {
+        border: none;
+        border-radius: 0;
+        padding: $spacer-md $spacer-lg;
+        font-size: $font-size-base;
+        flex: 1;
+        background-color: $white;
+        
+        &:focus {
+          border: none;
+          box-shadow: none;
+          outline: none;
+        }
+
+        &::placeholder {
+          color: $text-muted;
+          font-style: italic;
+        }
+      }
+
+      .search-button-center {
+        border: none;
+        border-radius: 0;
+        background-color: $white;
+        color: $primary-blue;
+        padding: $spacer-md $spacer-lg;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 60px;
+        
+        &:hover {
+          background-color: $light-blue;
+          color: $secondary-blue;
+        }
+
+        &:focus {
+          box-shadow: none;
+          outline: 2px solid $primary-blue;
+          outline-offset: -2px;
+        }
+      }
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      .search-container {
+        margin: 0 $spacer-md;
+      }
+    }
+  }
+
+  // Sections par spécialité
+  .specialty-section {
+    margin-bottom: $spacer-xxl;
+
+    .specialty-title {
+      font-size: $font-size-h3;
+      color: $title-color; // #00497c selon la maquette
+      font-weight: 600;
+      margin-bottom: $spacer-lg;
+      padding-left: $spacer-sm;
+
+      @media (max-width: $breakpoint-md) {
+        font-size: $font-size-h4;
+        margin-bottom: $spacer-md;
+      }
+    }
+  }
+
+  // Message pour les données API
+  .api-placeholder {
+    padding: $spacer-xxl;
+    text-align: center;
+    background-color: $white;
+    border-radius: $border-radius-lg;
+    box-shadow: $box-shadow;
+    margin: $spacer-xxl 0;
+
+    h3 {
+      color: $title-color;
+      margin-bottom: $spacer-md;
+    }
+
+    p {
+      color: $text-primary;
+      font-size: $font-size-base;
+      margin-bottom: $spacer-sm;
+
+      strong {
+        color: $primary-blue;
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: $breakpoint-lg) {
+  .artisans-list-page {
+    padding: $spacer-xl 0;
+
+    .page-header {
+      margin-bottom: $spacer-xl;
+    }
+
+    .specialty-section {
+      margin-bottom: $spacer-xl;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .artisans-list-page {
+    padding: $spacer-lg 0;
+
+    .page-header {
+      margin-bottom: $spacer-lg;
+    }
+
+    .specialty-section {
+      margin-bottom: $spacer-lg;
+
+      .specialty-title {
+        padding-left: 0;
+        text-align: center;
+      }
+    }
+  }
+}
