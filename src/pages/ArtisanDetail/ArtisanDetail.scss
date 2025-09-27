@@ -1,324 +1,290 @@
-@import '../../styles/variables';
+// Import des variables officielles
+@import '../../styles/_variables';
 
 .artisan-detail-page {
-  background-color: $bg-primary; // #f1f8fc
-  min-height: calc(100vh - 200px);
-  padding: $spacer-xxl 0;
+  padding: 40px 0;
+  background-color: $bg-primary; // #f1f8fc - Fond officiel
+  min-height: 100vh;
 
-  // En-tête de la page
   .page-header {
-    margin-bottom: $spacer-xxl;
+    margin-bottom: 40px;
 
-    .page-title {
-      font-size: $font-size-h1;
-      color: $title-color; // #00497c
+    .main-title {
+      font-size: $font-size-h2;
       font-weight: 700;
+      color: $title-color; // #00497c - Couleur titre officielle
       margin-bottom: 0;
+      text-align: center;
       letter-spacing: 1px;
 
       @media (max-width: $breakpoint-md) {
-        font-size: $font-size-h2;
-      }
-
-      @media (max-width: $breakpoint-sm) {
         font-size: $font-size-h3;
       }
     }
   }
 
-  // Carte de profil de l'artisan
+  // Card principale du profil artisan
   .artisan-profile-card {
-    background-color: $bg-card; // Fond blanc
-    border: 1px solid #e0e0e0;
+    border: 3px solid $border-color;
     border-radius: $border-radius-lg;
     box-shadow: $box-shadow;
-    margin-bottom: $spacer-xl;
+    background-color: $bg-primary; // Même couleur que le fond de page (#f1f8fc)
 
-    .profile-body {
-      padding: $spacer-xxl;
+    .card-body {
+      padding: $spacer-xl;
 
       @media (max-width: $breakpoint-md) {
-        padding: $spacer-xl;
-      }
-
-      @media (max-width: $breakpoint-sm) {
         padding: $spacer-lg;
       }
     }
 
-    // Image de l'artisan
-    .artisan-image-container {
-      .artisan-image {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 4px solid $light-blue;
-        box-shadow: $box-shadow;
+    .profile-image-col {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-right: $spacer-xl;
 
-        @media (max-width: $breakpoint-md) {
-          width: 150px;
-          height: 150px;
-        }
+      @media (max-width: $breakpoint-md) {
+        padding-right: $spacer-md;
+        margin-bottom: $spacer-lg;
+      }
 
-        @media (max-width: $breakpoint-sm) {
-          width: 120px;
-          height: 120px;
+      .artisan-image-container {
+        .artisan-image {
+          width: 200px;
+          height: 200px;
+          object-fit: cover;
+          border-radius: $border-radius-lg;
+          border: 1px solid $border-color;
+          margin-top: 25px;
+
+          @media (max-width: $breakpoint-md) {
+            width: 150px;
+            height: 150px;
+          }
         }
       }
     }
 
-    // Informations de l'artisan
-    .artisan-info {
-      .artisan-name {
-        font-size: $font-size-h2;
-        color: $text-primary; // #384050
-        font-weight: 700;
-        margin-bottom: $spacer-sm;
+    .profile-info-col {
+      .artisan-header {
+        margin-bottom: 25px;
 
-        @media (max-width: $breakpoint-md) {
+        .artisan-name {
           font-size: $font-size-h3;
-          text-align: center;
-        }
-      }
+          font-weight: 700;
+          color: $text-primary; // #384050
+          margin-bottom: 5px;
 
-      .artisan-specialty {
-        font-size: $font-size-lg;
-        color: $text-primary; // #384050
-        font-weight: 500;
-        margin-bottom: $spacer-md;
-
-        @media (max-width: $breakpoint-md) {
-          text-align: center;
-        }
-      }
-
-      // Rating avec étoiles
-      .rating-display {
-        display: flex;
-        align-items: center;
-        margin-bottom: $spacer-md;
-        gap: $spacer-sm;
-
-        @media (max-width: $breakpoint-md) {
-          justify-content: center;
+          @media (max-width: $breakpoint-md) {
+            font-size: $font-size-h4;
+            text-align: center;
+          }
         }
 
-        .stars {
-          display: flex;
-          align-items: center;
+        .artisan-specialty {
+          font-size: $font-size-lg;
+          color: $text-secondary;
+          margin-bottom: 10px;
+          font-weight: 500;
 
-          .star {
-            font-size: $font-size-base;
-            margin-right: 3px;
-            color: $star-color; // #384050
+          @media (max-width: $breakpoint-md) {
+            text-align: center;
+          }
+        }
 
-            &.star-full,
-            &.star-half {
-              color: $star-color;
+        .rating-section {
+          margin-bottom: 10px;
+
+          .rating-stars {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            @media (max-width: $breakpoint-md) {
+              justify-content: center;
             }
 
-            &.star-empty {
-              color: $star-empty-color;
+            .star-filled {
+              color: $star-color; // #384050 - Couleur officielle étoiles
+              font-size: 1.1rem;
+            }
+
+            .star-empty {
+              color: $star-empty-color; // #e4e5e9 - Couleur étoiles vides
+              font-size: 1.1rem;
+            }
+
+            .rating-count {
+              margin-left: 10px;
+              font-size: $font-size-sm;
+              color: $text-muted;
             }
           }
         }
 
-        .rating-text {
-          font-size: $font-size-sm;
+        .artisan-location {
+          font-size: $font-size-base;
           color: $text-primary;
+          margin-bottom: 0;
           font-weight: 500;
+
+          @media (max-width: $breakpoint-md) {
+            text-align: center;
+          }
         }
       }
 
-      .artisan-location {
-        font-size: $font-size-lg;
-        color: $text-primary;
-        margin-bottom: $spacer-xl;
-        font-weight: 500;
-
-        @media (max-width: $breakpoint-md) {
-          text-align: center;
-        }
-      }
-
-      // Section À propos
       .about-section {
-        margin-bottom: $spacer-xl;
+        margin-bottom: $spacer-lg;
 
         h4 {
-          font-size: $font-size-h4;
-          color: $text-primary;
+          font-size: $font-size-h5;
           font-weight: 600;
-          margin-bottom: $spacer-md;
+          color: $text-primary;
+          margin-bottom: 10px;
+
+          @media (max-width: $breakpoint-md) {
+            text-align: center;
+          }
         }
 
         .about-text {
           font-size: $font-size-base;
-          color: $text-primary;
-          line-height: 1.7;
+          line-height: 1.6;
+          color: $text-secondary;
           text-align: justify;
-        }
-      }
 
-      // Site internet
-      .website-section {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: $spacer-xs;
-
-        @media (max-width: $breakpoint-md) {
-          justify-content: center;
-        }
-
-        .website-icon {
-          color: $text-primary;
-          font-size: $font-size-base;
-        }
-
-        .website-label {
-          font-size: $font-size-base;
-          color: $text-primary;
-          font-weight: 500;
-        }
-
-        .website-link {
-          color: $primary-blue;
-          text-decoration: none;
-          font-size: $font-size-base;
-          
-          &:hover {
-            color: $secondary-blue;
-            text-decoration: underline;
-          }
-
-          &:focus {
-            outline: 2px solid $primary-blue;
-            outline-offset: 2px;
-          }
-        }
-      }
-    }
-  }
-
-  // Formulaire de contact
-  .contact-form-card {
-    background: linear-gradient(135deg, $primary-blue 0%, $secondary-blue 100%);
-    border: none;
-    border-radius: $border-radius-lg;
-    box-shadow: $box-shadow-lg;
-
-    .card-body {
-      padding: $spacer-xxl;
-
-      @media (max-width: $breakpoint-md) {
-        padding: $spacer-xl;
-      }
-
-      @media (max-width: $breakpoint-sm) {
-        padding: $spacer-lg;
-      }
-    }
-
-    .contact-title {
-      color: $white;
-      font-size: $font-size-h3;
-      font-weight: 600;
-      margin-bottom: $spacer-xl;
-      text-align: center;
-    }
-
-    // Styles du formulaire
-    .form-label {
-      color: $white;
-      font-weight: 500;
-      margin-bottom: $spacer-sm;
-    }
-
-    .form-control {
-      border: none;
-      border-radius: $border-radius;
-      padding: $spacer-md;
-      font-size: $font-size-base;
-      background-color: $white;
-      
-      &:focus {
-        border: 2px solid $white;
-        box-shadow: none;
-        outline: none;
-      }
-
-      &::placeholder {
-        color: $text-muted;
-      }
-    }
-
-    .submit-button {
-      background-color: $warning-gray;
-      border: none;
-      color: $white;
-      font-size: $font-size-base;
-      font-weight: 700;
-      padding: $spacer-md $spacer-xxl;
-      border-radius: $border-radius;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-
-      &:hover {
-        background-color: rgba($warning-gray, 0.8);
-        transform: translateY(-2px);
-      }
-
-      &:focus {
-        box-shadow: 0 0 0 0.25rem rgba($white, 0.5);
-        outline: none;
-      }
-    }
-  }
-}
-
-// Responsive
-@media (max-width: $breakpoint-lg) {
-  .artisan-detail-page {
-    padding: $spacer-xl 0;
-
-    .page-header {
-      margin-bottom: $spacer-xl;
-    }
-  }
-}
-
-@media (max-width: $breakpoint-sm) {
-  .artisan-detail-page {
-    padding: $spacer-lg 0;
-
-    .page-header {
-      margin-bottom: $spacer-lg;
-    }
-
-    .artisan-profile-card {
-      .artisan-info {
-        text-align: center;
-
-        .about-section {
-          .about-text {
+          @media (max-width: $breakpoint-md) {
             text-align: left;
           }
         }
       }
+
+      .website-section {
+        font-size: $font-size-base;
+        color: $text-primary;
+
+        @media (max-width: $breakpoint-md) {
+          text-align: center;
+        }
+
+        .website-link {
+          color: $primary-blue; // #0074c7 - Bleu principal
+          font-weight: 500;
+
+          &:hover {
+            color: $secondary-blue;
+            text-decoration: underline;
+          }
+        }
+      }
     }
   }
-}
 
-// Accessibilité
-@media (prefers-reduced-motion: reduce) {
-  .artisan-detail-page {
-    .submit-button {
-      transition: none;
+  // Section formulaire de contact - Couleurs officielles
+  .contact-section {
+    .contact-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: $secondary-blue; // #00497c - Couleur officielle
+      margin-bottom: 20px;
+      margin-top : 30px;
+    }
 
-      &:hover {
-        transform: none;
+    .contact-form-container {
+      background: linear-gradient(135deg, $primary-blue 0%, $secondary-blue 100%); // Gradient avec couleurs officielles
+      padding: 30px;
+      border-radius: $border-radius-lg;
+
+      @media (max-width: $breakpoint-md) {
+        padding: 20px;
+      }
+
+      .form-label-blue {
+        color: $text-light; // Blanc officiel
+        font-weight: 600;
+        font-size: $font-size-base;
+        margin-bottom: 8px;
+      }
+
+      .form-input,
+      .form-textarea {
+        border: none;
+        border-radius: $border-radius-sm;
+        padding: 10px 12px;
+        font-size: $font-size-base;
+        background-color: $white;
+        color: $text-primary;
+        
+        &:focus {
+          border: 2px solid $light-blue;
+          box-shadow: 0 0 0 0.2rem rgba($primary-blue, 0.25);
+          outline: none;
+        }
+
+        &::placeholder {
+          color: $text-muted;
+        }
+      }
+
+      .form-textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .valider-button {
+        background-color: $warning-gray; // #384050 - Gris officiel
+        border: none;
+        color: $text-light;
+        padding: 12px 30px;
+        font-weight: 700;
+        font-size: $font-size-base;
+        border-radius: $border-radius-sm;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: darken($warning-gray, 10%);
+          transform: translateY(-2px);
+          box-shadow: $box-shadow;
+        }
+
+        &:active,
+        &:focus {
+          background-color: darken($warning-gray, 15%) !important;
+          border: none !important;
+          box-shadow: none !important;
+        }
+      }
+    }
+  }
+
+  // Alertes avec couleurs officielles
+  .alert {
+    border-radius: $border-radius-lg;
+    border: none;
+    font-weight: 500;
+  }
+
+  .alert-success {
+    background-color: lighten($success-green, 35%);
+    color: darken($success-green, 20%);
+    border-left: 4px solid $success-green;
+  }
+
+  .alert-danger {
+    background-color: lighten($accent-red, 35%);
+    color: darken($accent-red, 15%);
+    border-left: 4px solid $accent-red;
+  }
+
+  // Responsive avec breakpoints officiels
+  @media (max-width: $breakpoint-md) {
+    padding: $spacer-lg 0;
+
+    .artisan-profile-card .card-body {
+      .profile-image-col {
+        padding-right: $spacer-md;
       }
     }
   }

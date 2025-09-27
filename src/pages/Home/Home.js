@@ -13,33 +13,37 @@ import formulaireImg from "../../assets/images/formulaire.jpg";
 import img48h from "../../assets/images/48h.jpg";
 
 const Home = () => {
+  // Données spécifiques UNIQUEMENT pour la page d'accueil
   const featuredArtisans = [
     {
-      id: 1,
+      id: "home-1", // ID spécial pour éviter les conflits
       name: "Au pain chaud",
       specialty: "Boulanger",
       rating: 4.8,
       reviewCount: 45,
       location: "Montélimar",
       image: boulangerieImg,
+      isHomeFeatured: true, // Marqueur spécial
     },
     {
-      id: 2,
+      id: "home-2", // ID spécial pour éviter les conflits
       name: "Vallis Bellemare",
       specialty: "Plomberie",
       rating: 4.9,
       reviewCount: 70,
       location: "Vienne",
       image: plombierImg,
+      isHomeFeatured: true, // Marqueur spécial
     },
     {
-      id: 3,
+      id: "home-3", // ID spécial pour éviter les conflits
       name: "Valérie Laredoute",
       specialty: "Toiletteur",
       rating: 4.5,
       reviewCount: 32,
       location: "Valence",
       image: toiletteurImg,
+      isHomeFeatured: true, // Marqueur spécial
     },
   ];
 

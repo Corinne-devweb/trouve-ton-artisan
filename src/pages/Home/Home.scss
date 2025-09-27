@@ -6,7 +6,7 @@
 
   // Section Hero
   .hero-section {
-    padding: 20px 0;
+    padding-top: 20px;
     text-align: center;
     background-color: #F1F8FC;
 
@@ -51,11 +51,9 @@
         justify-content: flex-start; // le titre reste en haut
         padding-top: $spacer-md;
 
-        &:hover {
-          border-color: $primary-blue;
-          transform: translateY(-5px);
-          box-shadow: 0 10px 25px rgba(0, 116, 199, 0.15);
-        }
+        cursor: default; // Curseur normal, pas de main
+  pointer-events: none; // Désactive tous les événements de souris
+
 
         .card-body {
           display: flex;
