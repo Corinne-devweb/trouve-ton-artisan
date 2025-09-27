@@ -1,172 +1,233 @@
 @import '../../styles/variables';
 
-.artisans-list-page {
-  background-color: $bg-primary; // Fond bleu clair #f1f8fc
-  min-height: calc(100vh - 200px); // Hauteur minimale
-  padding: $spacer-xxl 0;
+/* ===========================
+   Cartes Artisan
+=========================== */
+.artisan-list-card {
+  background-color: $primary-blue;
+  border: none;
+  border-radius: $border-radius-lg;
+  box-shadow: $box-shadow;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  margin-bottom: $spacer-md;
 
-  // En-tête de la page
-  .page-header {
-    margin-bottom: $spacer-xxl;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $box-shadow-lg;
+  }
 
-    .page-title {
-      font-size: $font-size-h1;
-      color: $title-color; // #00497c selon la maquette
-      font-weight: 700;
-      margin-bottom: $spacer-xl;
-      letter-spacing: 1px;
+  .card-body-custom {
+    padding: $spacer-lg;
+    color: $white;
 
-      @media (max-width: $breakpoint-md) {
-        font-size: $font-size-h2;
+    .row {
+      align-items: center;
+      margin: 0;
+    }
+
+    .image-col {
+      padding-right: $spacer-md;
+
+      .artisan-image-container {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid $white;
+
+        .artisan-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
       }
 
       @media (max-width: $breakpoint-sm) {
-        font-size: $font-size-h3;
-        margin-bottom: $spacer-lg;
+        padding-right: $spacer-sm;
+
+        .artisan-image-container {
+          width: 60px;
+          height: 60px;
+        }
       }
     }
-  }
 
-  // Barre de recherche centrale
-  .search-form-center {
-    display: flex;
-    justify-content: center;
-    margin-bottom: $spacer-xxl;
+    .info-col {
+      padding-left: 0;
 
-    .search-container {
-      display: flex;
-      max-width: 500px;
-      width: 100%;
-      box-shadow: $box-shadow;
-      border-radius: $border-radius-lg;
-      overflow: hidden;
-      background-color: $white;
-
-      .search-input-center {
-        border: none;
-        border-radius: 0;
-        padding: $spacer-md $spacer-lg;
-        font-size: $font-size-base;
-        flex: 1;
-        background-color: $white;
-        
-        &:focus {
-          border: none;
-          box-shadow: none;
-          outline: none;
-        }
-
-        &::placeholder {
-          color: $text-muted;
-          font-style: italic;
-        }
-      }
-
-      .search-button-center {
-        border: none;
-        border-radius: 0;
-        background-color: $white;
-        color: $primary-blue;
-        padding: $spacer-md $spacer-lg;
+      .artisan-info {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 60px;
-        
-        &:hover {
-          background-color: $light-blue;
-          color: $secondary-blue;
+        flex-direction: column;
+        gap: $spacer-xs;
+
+        .artisan-name {
+          font-size: $font-size-lg;
+          font-weight: 700;
+          color: $white;
+          margin: 0;
+          line-height: 1.2;
+
+          @media (max-width: $breakpoint-sm) {
+            font-size: $font-size-base;
+          }
         }
 
-        &:focus {
-          box-shadow: none;
-          outline: 2px solid $primary-blue;
-          outline-offset: -2px;
+        .artisan-specialty {
+          font-size: $font-size-sm;
+          color: rgba(255, 255, 255, 0.9);
+          font-weight: 500;
+          margin-bottom: $spacer-xs;
+
+          @media (max-width: $breakpoint-sm) {
+            font-size: $font-size-xs;
+          }
         }
-      }
-    }
 
-    @media (max-width: $breakpoint-sm) {
-      .search-container {
-        margin: 0 $spacer-md;
-      }
-    }
-  }
+        .rating-container {
+          display: flex;
+          align-items: center;
+          gap: $spacer-xs;
+          margin-bottom: $spacer-xs;
 
-  // Sections par spécialité
-  .specialty-section {
-    margin-bottom: $spacer-xxl;
+          .stars {
+            display: flex;
+            gap: 2px;
 
-    .specialty-title {
-      font-size: $font-size-h3;
-      color: $title-color; // #00497c selon la maquette
-      font-weight: 600;
-      margin-bottom: $spacer-lg;
-      padding-left: $spacer-sm;
+            .star {
+              font-size: $font-size-sm;
 
-      @media (max-width: $breakpoint-md) {
-        font-size: $font-size-h4;
-        margin-bottom: $spacer-md;
-      }
-    }
-  }
+              &.star-full,
+              &.star-half {
+                color: $white;
+              }
 
-  // Message pour les données API
-  .api-placeholder {
-    padding: $spacer-xxl;
-    text-align: center;
-    background-color: $white;
-    border-radius: $border-radius-lg;
-    box-shadow: $box-shadow;
-    margin: $spacer-xxl 0;
+              &.star-empty {
+                color: rgba(255, 255, 255, 0.3);
+              }
 
-    h3 {
-      color: $title-color;
-      margin-bottom: $spacer-md;
-    }
+              @media (max-width: $breakpoint-sm) {
+                font-size: $font-size-xs;
+              }
+            }
+          }
 
-    p {
-      color: $text-primary;
-      font-size: $font-size-base;
-      margin-bottom: $spacer-sm;
+          .rating-text {
+            font-size: $font-size-xs;
+            color: rgba(255, 255, 255, 0.8);
+            white-space: nowrap;
 
-      strong {
-        color: $primary-blue;
+            @media (max-width: $breakpoint-sm) {
+              display: none;
+            }
+          }
+        }
+
+        .artisan-location {
+          font-size: $font-size-sm;
+          color: rgba(255, 255, 255, 0.9);
+          margin-bottom: $spacer-sm;
+
+          @media (max-width: $breakpoint-sm) {
+            font-size: $font-size-xs;
+            margin-bottom: $spacer-xs;
+          }
+        }
+
+        .profile-button {
+          background-color: $black;
+          border: none;
+          color: $white;
+          font-size: $font-size-sm;
+          font-weight: 600;
+          padding: $spacer-xs $spacer-md;
+          border-radius: $border-radius;
+          align-self: flex-start;
+          text-decoration: none;
+          transition: background-color 0.2s ease;
+
+          &:hover {
+            background-color: darken($black, 10%);
+            color: $white;
+            text-decoration: none;
+          }
+
+          &:focus {
+            box-shadow: 0 0 0 2px $white;
+            outline: none;
+          }
+
+          @media (max-width: $breakpoint-sm) {
+            font-size: $font-size-xs;
+            padding: $spacer-xs $spacer-sm;
+          }
+        }
       }
     }
   }
 }
 
-// Responsive
+/* ===========================
+   Responsive cartes
+=========================== */
 @media (max-width: $breakpoint-lg) {
-  .artisans-list-page {
-    padding: $spacer-xl 0;
-
-    .page-header {
-      margin-bottom: $spacer-xl;
+  .artisan-list-card {
+    .card-body-custom {
+      padding: $spacer-md;
     }
+  }
+}
 
-    .specialty-section {
-      margin-bottom: $spacer-xl;
+@media (max-width: $breakpoint-md) {
+  .artisan-list-card {
+    .card-body-custom {
+      .image-col {
+        .artisan-image-container {
+          width: 70px;
+          height: 70px;
+        }
+      }
     }
   }
 }
 
 @media (max-width: $breakpoint-sm) {
-  .artisans-list-page {
-    padding: $spacer-lg 0;
+  .artisan-list-card {
+    margin-bottom: $spacer-sm;
 
-    .page-header {
-      margin-bottom: $spacer-lg;
+    .card-body-custom {
+      padding: $spacer-sm;
+
+      .info-col {
+        .artisan-info {
+          gap: $spacer-xs / 2;
+        }
+      }
+    }
+  }
+}
+
+/* ===========================
+   Barre de recherche centrée
+=========================== */
+.search-form-center {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+
+  .search-container {
+    display: flex;
+    max-width: 400px; // largeur max
+    width: 100%;
+    gap: 8px;
+
+    .search-input-center {
+      flex: 1;
     }
 
-    .specialty-section {
-      margin-bottom: $spacer-lg;
-
-      .specialty-title {
-        padding-left: 0;
-        text-align: center;
-      }
+    .search-button-center {
+      flex-shrink: 0;
     }
   }
 }
