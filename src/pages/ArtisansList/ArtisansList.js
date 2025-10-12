@@ -31,10 +31,6 @@ const ArtisansList = ({ category }) => {
     alimentation: { id: 4, name: "Alimentation" },
   };
 
-  useEffect(() => {
-    loadArtisans();
-  }, [category, query]);
-
   // Charge les artisans selon catégorie ou recherche
   const loadArtisans = async () => {
     try {
@@ -63,6 +59,11 @@ const ArtisansList = ({ category }) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    loadArtisans();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [category, query]);
 
   const handleSearch = (e) => {
     e.preventDefault();
