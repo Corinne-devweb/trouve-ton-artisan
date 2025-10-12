@@ -1,5 +1,5 @@
 import React from "react";
-import "../../pages/MentionsLegales/MentionsLegales.scss"; // SCSS de mise en page
+import "../../pages/MentionsLegales/MentionsLegales.scss";
 import constructionImg from "../../assets/images/construction.webp";
 
 const VeniralaRegion = () => {

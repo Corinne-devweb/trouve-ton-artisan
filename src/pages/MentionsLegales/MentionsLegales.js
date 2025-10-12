@@ -1,6 +1,5 @@
-// src/pages/MentionsLegales/MentionsLegales.js
 import React from "react";
-import "../../pages/MentionsLegales/MentionsLegales.scss"; // SCSS
+import "../../pages/MentionsLegales/MentionsLegales.scss";
 import constructionImg from "../../assets/images/construction.webp";
 
 const MentionsLegales = () => {

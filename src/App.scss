@@ -1,7 +1,7 @@
-// Import des styles principaux
+// Import des variables
 @import './styles/variables';
 
-// Styles globaux pour l'application
+// Structure principale
 .App {
   min-height: 100vh;
   display: flex;
@@ -13,7 +13,7 @@
   }
 }
 
-// Styles globaux
+// Styles globaux de base
 * {
   box-sizing: border-box;
 }
@@ -24,17 +24,17 @@ html {
 }
 
 body {
-  font-family: $font-family-fallback; // Utilise la police de fallback en attendant Graphik
+  font-family: $font-family-fallback;
   line-height: 1.6;
   color: $text-primary;
-  background-color: $bg-primary; // Fond bleu clair #f1f8fc
+  background-color: $bg-primary;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-// Styles des liens globaux
+// Liens
 a {
   color: $primary-blue;
   text-decoration: none;
@@ -51,12 +51,12 @@ a {
   }
 }
 
-// Styles des titres
+// Titres
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: $spacer-md;
-  color: $title-color; // #00497c pour tous les titres selon la maquette
+  color: $title-color;
 }
 
 h1 { font-size: $font-size-h1; }
@@ -66,13 +66,13 @@ h4 { font-size: $font-size-h4; }
 h5 { font-size: $font-size-h5; }
 h6 { font-size: $font-size-h6; }
 
-// Styles des paragraphes
+// Paragraphes
 p {
   margin-bottom: $spacer-md;
   line-height: 1.6;
 }
 
-// Personnalisation des boutons Bootstrap
+// Boutons Bootstrap personnalisés
 .btn {
   border-radius: $border-radius;
   font-weight: 500;
@@ -106,7 +106,7 @@ p {
   }
 }
 
-// Classes utilitaires
+// Classes utilitaires personnalisées
 .text-primary-custom {
   color: $primary-blue !important;
 }
@@ -123,14 +123,14 @@ p {
   background-color: $light-blue !important;
 }
 
-// Responsive utilities
+// Responsive
 @media (max-width: $breakpoint-sm) {
   h1 { font-size: $font-size-h2; }
   h2 { font-size: $font-size-h3; }
   h3 { font-size: $font-size-h4; }
 }
 
-// Accessibilité
+// Accessibilité - réduit les animations si demandé
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;

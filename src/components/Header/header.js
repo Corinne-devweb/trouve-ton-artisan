@@ -13,7 +13,7 @@ import "./Header.scss";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [expanded, setExpanded] = useState(false); // contrôle du menu burger
+  const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
@@ -21,21 +21,22 @@ const Header = () => {
     if (searchQuery.trim()) {
       navigate(`/search/${encodeURIComponent(searchQuery.trim())}`);
       setSearchQuery("");
-      setExpanded(false); // ferme le menu après recherche
+      setExpanded(false);
     }
   };
 
   const navigationItems = [
-    { name: "Bâtiment", path: "/batiment" },
-    { name: "Services", path: "/services" },
-    { name: "Fabrication", path: "/fabrication" },
-    { name: "Alimentation", path: "/alimentation" },
+    { name: "Bâtiment", path: "/category/batiment" },
+    { name: "Services", path: "/category/services" },
+    { name: "Fabrication", path: "/category/fabrication" },
+    { name: "Alimentation", path: "/category/alimentation" },
   ];
 
   return (
     <header className="site-header">
       <Navbar expand="lg" bg="light" expanded={expanded}>
         <Container>
+          {/* Logo */}
           <Navbar.Brand as={Link} to="/" className="navbar-brand-custom">
             <img
               src="/logo.png"
@@ -44,14 +45,16 @@ const Header = () => {
             />
           </Navbar.Brand>
 
+          {/* Menu burger */}
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
             onClick={() => setExpanded(!expanded)}
           >
-            {expanded ? "✖" : "☰"} {/* Affiche croix ou hamburger */}
+            {expanded ? "✖" : "☰"}
           </Navbar.Toggle>
 
           <Navbar.Collapse id="basic-navbar-nav">
+            {/* Navigation */}
             <Nav className="me-auto">
               {navigationItems.map((item, index) => (
                 <Nav.Link
@@ -59,13 +62,14 @@ const Header = () => {
                   as={Link}
                   to={item.path}
                   className="nav-link-custom"
-                  onClick={() => setExpanded(false)} // ferme le menu au clic
+                  onClick={() => setExpanded(false)}
                 >
                   {item.name}
                 </Nav.Link>
               ))}
             </Nav>
 
+            {/* Recherche */}
             <Form className="d-flex" onSubmit={handleSearch}>
               <FormControl
                 type="search"

@@ -1,51 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import ArtisanCard from "../../components/ArtisanCard/ArtisanCard";
+import ArtisanService from "../../services/artisanService";
 import "./Home.scss";
 
-// Import des images depuis src/assets/images
-import boulangerieImg from "../../assets/images/boulangerie.jpg";
-import plombierImg from "../../assets/images/plombier.jpg";
-import toiletteurImg from "../../assets/images/toiletteur.jpg";
 import artisanImg from "../../assets/images/artisan.jpg";
 import artisansImg from "../../assets/images/artisans.jpg";
 import formulaireImg from "../../assets/images/formulaire.jpg";
 import img48h from "../../assets/images/48h.jpg";
 
 const Home = () => {
-  // Données spécifiques UNIQUEMENT pour la page d'accueil
-  const featuredArtisans = [
-    {
-      id: "home-1", // ID spécial pour éviter les conflits
-      name: "Au pain chaud",
-      specialty: "Boulanger",
-      rating: 4.8,
-      reviewCount: 45,
-      location: "Montélimar",
-      image: boulangerieImg,
-      isHomeFeatured: true, // Marqueur spécial
-    },
-    {
-      id: "home-2", // ID spécial pour éviter les conflits
-      name: "Vallis Bellemare",
-      specialty: "Plomberie",
-      rating: 4.9,
-      reviewCount: 70,
-      location: "Vienne",
-      image: plombierImg,
-      isHomeFeatured: true, // Marqueur spécial
-    },
-    {
-      id: "home-3", // ID spécial pour éviter les conflits
-      name: "Valérie Laredoute",
-      specialty: "Toiletteur",
-      rating: 4.5,
-      reviewCount: 32,
-      location: "Valence",
-      image: toiletteurImg,
-      isHomeFeatured: true, // Marqueur spécial
-    },
-  ];
+  const [featuredArtisans, setFeaturedArtisans] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Récupère les artisans du mois
+  useEffect(() => {
+    const fetchTopArtisans = async () => {
+      try {
+        setLoading(true);
+        const artisans = await ArtisanService.getTopArtisans();
+        setFeaturedArtisans(artisans);
+        setError(null);
+      } catch (err) {
+        console.error(
+          "Erreur lors de la récupération des artisans du mois:",
+          err
+        );
+        setError("Impossible de charger les artisans du mois");
+        setFeaturedArtisans([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTopArtisans();
+  }, []);
 
   const steps = [
     {
@@ -76,7 +66,7 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      {/* Section Hero */}
+      {/* Hero */}
       <section className="hero-section">
         <Container>
           <div className="hero-content">
@@ -85,7 +75,7 @@ const Home = () => {
         </Container>
       </section>
 
-      {/* Section Comment trouver */}
+      {/* Comment trouver */}
       <section className="how-it-works">
         <Container>
           <h2 className="section-title">Comment trouver mon artisan</h2>
@@ -117,18 +107,40 @@ const Home = () => {
         </Container>
       </section>
 
-      {/* Section Artisans du mois */}
+      {/* Artisans du mois */}
       <section className="featured-artisans">
         <Container>
           <h2 className="section-title">Les trois artisans du mois</h2>
 
-          <Row className="artisans-row">
-            {featuredArtisans.map((artisan) => (
-              <Col lg={4} md={6} sm={12} key={artisan.id} className="mb-4">
-                <ArtisanCard artisan={artisan} featured={true} />
-              </Col>
-            ))}
-          </Row>
+          {loading && (
+            <div className="text-center">
+              <p>Chargement des artisans du mois...</p>
+            </div>
+          )}
+
+          {error && (
+            <div className="text-center">
+              <p className="text-danger">{error}</p>
+            </div>
+          )}
+
+          {!loading && !error && (
+            <Row className="artisans-row">
+              {featuredArtisans.length > 0 ? (
+                featuredArtisans.map((artisan) => (
+                  <Col lg={4} md={6} sm={12} key={artisan.id} className="mb-4">
+                    <ArtisanCard artisan={artisan} featured={true} />
+                  </Col>
+                ))
+              ) : (
+                <Col xs={12}>
+                  <div className="text-center">
+                    <p>Aucun artisan du mois disponible pour le moment.</p>
+                  </div>
+                </Col>
+              )}
+            </Row>
+          )}
         </Container>
       </section>
     </div>

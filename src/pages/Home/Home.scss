@@ -4,7 +4,7 @@
   padding-top: 40px;
   background-color: #F1F8FC;
 
-  // Section Hero
+  // Hero
   .hero-section {
     padding-top: 20px;
     text-align: center;
@@ -22,10 +22,10 @@
     }
   }
 
-  // Section Comment ça marche
+  // Comment ça marche
   .how-it-works {
     padding-top: $spacer-xxl;
-    padding-bottom: $spacer-md; // réduit l'espace entre les sections
+    padding-bottom: $spacer-md;
     background: transparent;
 
     .section-title {
@@ -44,16 +44,14 @@
         border: 2px solid #e3f2fd;
         border-radius: $border-radius-lg;
         transition: all 0.3s ease;
-        height: 320px; // hauteur fixe pour aligner tous les titres
+        height: 320px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start; // le titre reste en haut
+        justify-content: flex-start;
         padding-top: $spacer-md;
-
-        cursor: default; // Curseur normal, pas de main
-  pointer-events: none; // Désactive tous les événements de souris
-
+        cursor: default;
+        pointer-events: none;
 
         .card-body {
           display: flex;
@@ -83,13 +81,13 @@
           align-items: center;
 
           img {
-            width: 60px;    // taille par défaut
+            width: 60px;
             height: 60px;
             object-fit: contain;
           }
         }
 
-        // Agrandir uniquement les images des étapes 1 et 2
+        // Images agrandies pour étapes 1 et 2
         &:nth-child(1) .step-icon img,
         &:nth-child(2) .step-icon img {
           width: 130px;
@@ -108,7 +106,7 @@
     }
   }
 
-  // Section Artisans vedettes
+  // Artisans du mois
   .featured-artisans {
     padding-top: $spacer-md;
     padding-bottom: $spacer-xl;

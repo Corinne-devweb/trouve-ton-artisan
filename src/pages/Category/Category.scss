@@ -1,0 +1,51 @@
+.category-page {
+  min-height: 70vh;
+  
+  h1 {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    font-family: 'Graphik', sans-serif;
+  }
+  
+  .search-input {
+    border-radius: 25px 0 0 25px;
+    border: 2px solid #e9ecef;
+    
+    &:focus {
+      border-color: #0055a0;
+      box-shadow: 0 0 0 0.2rem rgba(0, 85, 160, 0.25);
+    }
+  }
+  
+  .search-button {
+    border-radius: 0 25px 25px 0;
+    background-color: #0055a0;
+    border-color: #0055a0;
+    color: white;
+    
+    &:hover {
+      background-color: #003d73;
+      border-color: #003d73;
+    }
+  }
+  
+  .artisans-count {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .category-page {
+    h1 {
+      font-size: 1.5rem;
+    }
+    
+    .search-input {
+      font-size: 0.9rem;
+    }
+  }
+}

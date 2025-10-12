@@ -1,18 +1,17 @@
-// Import des variables officielles
 @import '../../styles/_variables';
 
 .artisan-detail-page {
   padding: 40px 0;
-  background-color: $bg-primary; // #f1f8fc - Fond officiel
+  background-color: $bg-primary;
   min-height: 100vh;
 
   .page-header {
     margin-bottom: 40px;
 
-    .main-title {
+    .page-title {
       font-size: $font-size-h2;
       font-weight: 700;
-      color: $title-color; // #00497c - Couleur titre officielle
+      color: $title-color;
       margin-bottom: 0;
       text-align: center;
       letter-spacing: 1px;
@@ -23,12 +22,215 @@
     }
   }
 
-  // Card principale du profil artisan
+  // Carte profil artisan
   .artisan-profile-card {
     border: 3px solid $border-color;
     border-radius: $border-radius-lg;
     box-shadow: $box-shadow;
-    background-color: $bg-primary; // Même couleur que le fond de page (#f1f8fc)
+    background-color: $bg-primary;
+
+    .profile-body {
+      padding: $spacer-xl;
+
+      @media (max-width: $breakpoint-md) {
+        padding: $spacer-lg;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        min-height: 300px;
+
+        @media (max-width: $breakpoint-md) {
+          flex-direction: column;
+          text-align: center;
+          min-height: auto;
+        }
+      }
+    }
+
+    .artisan-image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .artisan-image {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: $border-radius-lg;
+        border: 2px solid $border-color;
+        box-shadow: $box-shadow;
+
+        @media (max-width: $breakpoint-md) {
+          width: 200px;
+          height: 200px;
+          margin-bottom: $spacer-lg;
+        }
+      }
+    }
+
+    .artisan-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      padding-left: $spacer-xl;
+
+      @media (max-width: $breakpoint-md) {
+        padding-left: 0;
+        text-align: center;
+      }
+
+      .artisan-name {
+        font-size: $font-size-h2;
+        font-weight: 700;
+        color: $text-primary;
+        margin-bottom: 10px;
+        line-height: 1.2;
+
+        @media (max-width: $breakpoint-md) {
+          font-size: $font-size-h3;
+        }
+      }
+
+      .artisan-specialty {
+        font-size: 1rem;
+        color: $primary-blue;
+        font-weight: 500;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+
+        @media (max-width: $breakpoint-md) {
+          font-size: 0.95rem;
+        }
+      }
+
+      // Notation
+      .rating-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+
+        @media (max-width: $breakpoint-md) {
+          align-items: center;
+        }
+
+        .stars {
+          display: flex;
+          gap: 3px;
+          margin-bottom: 5px;
+
+          .star {
+            font-size: 1.3rem;
+            
+            &.star-full,
+            &.star-half,
+            &.star-empty {
+              color: #ffc107;
+            }
+          }
+        }
+
+        .rating-text {
+          font-size: $font-size-sm;
+          color: $text-secondary;
+          font-weight: 500;
+        }
+      }
+
+      // Détails
+      .artisan-details {
+        margin-bottom: 20px;
+
+        .detail-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+          font-size: $font-size-base;
+
+          @media (max-width: $breakpoint-md) {
+            justify-content: center;
+          }
+
+          .detail-icon {
+            color: $primary-blue;
+            margin-right: 10px;
+            font-size: 1.1rem;
+            width: 20px;
+          }
+
+          span {
+            color: $text-primary;
+            font-weight: 500;
+          }
+
+          a {
+            color: $primary-blue;
+            text-decoration: none;
+            font-weight: 500;
+
+            &:hover {
+              color: $secondary-blue;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
+      // À propos
+      .artisan-about {
+        h4 {
+          font-size: $font-size-h5;
+          font-weight: 600;
+          color: $text-primary;
+          margin-bottom: 10px;
+          border-bottom: 2px solid $primary-blue;
+          padding-bottom: 5px;
+          display: inline-block;
+
+          @media (max-width: $breakpoint-md) {
+            display: block;
+            text-align: center;
+            border-bottom: none;
+            border-top: 2px solid $primary-blue;
+            padding-top: 5px;
+            padding-bottom: 0;
+          }
+        }
+
+        p {
+          font-size: $font-size-base;
+          line-height: 1.6;
+          color: $text-secondary;
+          margin-bottom: 0;
+          text-align: justify;
+
+          @media (max-width: $breakpoint-md) {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+
+  // Formulaire de contact
+  .contact-form-card {
+    border: 2px solid $border-color;
+    border-radius: $border-radius-lg;
+    box-shadow: $box-shadow;
+
+    .contact-title {
+      font-size: $font-size-h3;
+      font-weight: 600;
+      color: $secondary-blue;
+      margin-bottom: 25px;
+      text-align: center;
+      padding-bottom: 10px;
+      border-bottom: 2px solid $primary-blue;
+    }
 
     .card-body {
       padding: $spacer-xl;
@@ -38,254 +240,62 @@
       }
     }
 
-    .profile-image-col {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding-right: $spacer-xl;
-
-      @media (max-width: $breakpoint-md) {
-        padding-right: $spacer-md;
-        margin-bottom: $spacer-lg;
-      }
-
-      .artisan-image-container {
-        .artisan-image {
-          width: 200px;
-          height: 200px;
-          object-fit: cover;
-          border-radius: $border-radius-lg;
-          border: 1px solid $border-color;
-          margin-top: 25px;
-
-          @media (max-width: $breakpoint-md) {
-            width: 150px;
-            height: 150px;
-          }
-        }
-      }
-    }
-
-    .profile-info-col {
-      .artisan-header {
-        margin-bottom: 25px;
-
-        .artisan-name {
-          font-size: $font-size-h3;
-          font-weight: 700;
-          color: $text-primary; // #384050
-          margin-bottom: 5px;
-
-          @media (max-width: $breakpoint-md) {
-            font-size: $font-size-h4;
-            text-align: center;
-          }
-        }
-
-        .artisan-specialty {
-          font-size: $font-size-lg;
-          color: $text-secondary;
-          margin-bottom: 10px;
-          font-weight: 500;
-
-          @media (max-width: $breakpoint-md) {
-            text-align: center;
-          }
-        }
-
-        .rating-section {
-          margin-bottom: 10px;
-
-          .rating-stars {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-
-            @media (max-width: $breakpoint-md) {
-              justify-content: center;
-            }
-
-            .star-filled {
-              color: $star-color; // #384050 - Couleur officielle étoiles
-              font-size: 1.1rem;
-            }
-
-            .star-empty {
-              color: $star-empty-color; // #e4e5e9 - Couleur étoiles vides
-              font-size: 1.1rem;
-            }
-
-            .rating-count {
-              margin-left: 10px;
-              font-size: $font-size-sm;
-              color: $text-muted;
-            }
-          }
-        }
-
-        .artisan-location {
-          font-size: $font-size-base;
-          color: $text-primary;
-          margin-bottom: 0;
-          font-weight: 500;
-
-          @media (max-width: $breakpoint-md) {
-            text-align: center;
-          }
-        }
-      }
-
-      .about-section {
-        margin-bottom: $spacer-lg;
-
-        h4 {
-          font-size: $font-size-h5;
-          font-weight: 600;
-          color: $text-primary;
-          margin-bottom: 10px;
-
-          @media (max-width: $breakpoint-md) {
-            text-align: center;
-          }
-        }
-
-        .about-text {
-          font-size: $font-size-base;
-          line-height: 1.6;
-          color: $text-secondary;
-          text-align: justify;
-
-          @media (max-width: $breakpoint-md) {
-            text-align: left;
-          }
-        }
-      }
-
-      .website-section {
-        font-size: $font-size-base;
-        color: $text-primary;
-
-        @media (max-width: $breakpoint-md) {
-          text-align: center;
-        }
-
-        .website-link {
-          color: $primary-blue; // #0074c7 - Bleu principal
-          font-weight: 500;
-
-          &:hover {
-            color: $secondary-blue;
-            text-decoration: underline;
-          }
-        }
-      }
-    }
-  }
-
-  // Section formulaire de contact - Couleurs officielles
-  .contact-section {
-    .contact-title {
-      font-size: 1.5rem;
+    .form-label {
+      color: $text-primary;
       font-weight: 600;
-      color: $secondary-blue; // #00497c - Couleur officielle
-      margin-bottom: 20px;
-      margin-top : 30px;
+      font-size: $font-size-base;
+      margin-bottom: 8px;
     }
 
-    .contact-form-container {
-      background: linear-gradient(135deg, $primary-blue 0%, $secondary-blue 100%); // Gradient avec couleurs officielles
-      padding: 30px;
-      border-radius: $border-radius-lg;
+    .form-control {
+      border: 2px solid $border-color;
+      border-radius: $border-radius-sm;
+      padding: 12px 15px;
+      font-size: $font-size-base;
+      
+      &:focus {
+        border-color: $primary-blue;
+        box-shadow: 0 0 0 0.2rem rgba($primary-blue, 0.25);
+      }
+    }
 
-      @media (max-width: $breakpoint-md) {
-        padding: 20px;
+    .submit-button {
+      background-color: $primary-blue;
+      border: none;
+      color: white;
+      padding: 12px 30px;
+      font-weight: 700;
+      font-size: $font-size-base;
+      border-radius: $border-radius-sm;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: $secondary-blue;
+        transform: translateY(-2px);
+        box-shadow: $box-shadow;
       }
 
-      .form-label-blue {
-        color: $text-light; // Blanc officiel
-        font-weight: 600;
-        font-size: $font-size-base;
-        margin-bottom: 8px;
-      }
-
-      .form-input,
-      .form-textarea {
-        border: none;
-        border-radius: $border-radius-sm;
-        padding: 10px 12px;
-        font-size: $font-size-base;
-        background-color: $white;
-        color: $text-primary;
-        
-        &:focus {
-          border: 2px solid $light-blue;
-          box-shadow: 0 0 0 0.2rem rgba($primary-blue, 0.25);
-          outline: none;
-        }
-
-        &::placeholder {
-          color: $text-muted;
-        }
-      }
-
-      .form-textarea {
-        resize: vertical;
-        min-height: 100px;
-      }
-
-      .valider-button {
-        background-color: $warning-gray; // #384050 - Gris officiel
-        border: none;
-        color: $text-light;
-        padding: 12px 30px;
-        font-weight: 700;
-        font-size: $font-size-base;
-        border-radius: $border-radius-sm;
-        transition: all 0.3s ease;
-
-        &:hover {
-          background-color: darken($warning-gray, 10%);
-          transform: translateY(-2px);
-          box-shadow: $box-shadow;
-        }
-
-        &:active,
-        &:focus {
-          background-color: darken($warning-gray, 15%) !important;
-          border: none !important;
-          box-shadow: none !important;
-        }
+      &:disabled {
+        background-color: #6c757d;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
       }
     }
   }
 
-  // Alertes avec couleurs officielles
   .alert {
     border-radius: $border-radius-lg;
     border: none;
     font-weight: 500;
+    margin-bottom: 20px;
   }
 
-  .alert-success {
-    background-color: lighten($success-green, 35%);
-    color: darken($success-green, 20%);
-    border-left: 4px solid $success-green;
-  }
-
-  .alert-danger {
-    background-color: lighten($accent-red, 35%);
-    color: darken($accent-red, 15%);
-    border-left: 4px solid $accent-red;
-  }
-
-  // Responsive avec breakpoints officiels
   @media (max-width: $breakpoint-md) {
     padding: $spacer-lg 0;
 
-    .artisan-profile-card .card-body {
-      .profile-image-col {
-        padding-right: $spacer-md;
-      }
+    .artisan-profile-card .profile-body .row {
+      min-height: auto;
     }
   }
 }

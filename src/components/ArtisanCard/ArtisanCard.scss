@@ -1,4 +1,5 @@
 @import '../../styles/variables';
+
 .artisan-card {
   text-align: center;
   display: flex;
@@ -26,25 +27,49 @@
     height: 100%;
   }
 
-.card-image-container {
-  width: 100%;
-  overflow: hidden;
-
-  .card-image {
-    width: 100%;        // prend toute la largeur de la carte
-    height: auto;       // garde le ratio original
-    display: block;
-    object-fit: cover;  // remplit le conteneur et rogne si nécessaire
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
   }
 
+  // Image de la carte
+  .card-image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
 
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.3s ease;
+    }
 
+    &:hover .card-image {
+      transform: scale(1.05);
+    }
+
+    // Image de secours (avatar)
     .image-fallback {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #777;
-      text-align: center;
-      padding: 0.5rem;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f8f9fa;
+      
+      .fallback-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
     }
   }
 
@@ -63,8 +88,14 @@
     font-weight: bold;
     margin-bottom: 0.5rem;
     color: #333;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
   }
 
+  // Notation par étoiles
   .rating-container {
     display: flex;
     flex-direction: column;
@@ -79,6 +110,7 @@
       .star {
         font-size: 1rem;
         color: #f1c40f;
+        transition: color 0.2s ease;
       }
 
       .star-empty {
@@ -89,6 +121,7 @@
     .rating-text {
       font-size: 0.9rem;
       color: #666;
+      white-space: nowrap;
     }
   }
 
@@ -97,6 +130,10 @@
     font-weight: 500;
     margin: 0.5rem 0;
     color: #444;
+    background-color: #e3f2fd;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
   }
 
   .artisan-location {
@@ -110,6 +147,7 @@
     .location-icon {
       margin-right: 0.3rem;
       color: #0074c7;
+      flex-shrink: 0;
     }
   }
 
@@ -118,10 +156,39 @@
     color: #666;
     margin-top: 0.5rem;
     text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  // Carte mise en avant
+  &.featured-card {
+    border: 2px solid #0074c7;
+    
+    .card-image-container::after {
+      content: "★";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #0074c7;
+      color: white;
+      font-size: 1.2rem;
+      padding: 0.2rem 0.4rem;
+      border-radius: 50%;
+    }
   }
 }
 
-/* Responsive */
+// Responsive
+@media (max-width: 992px) {
+  .artisan-card {
+    .card-image-container {
+      height: 180px;
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .artisan-card {
     .card-image-container {
@@ -129,13 +196,29 @@
     }
 
     .artisan-name {
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
 
     .artisan-specialty,
     .artisan-location,
     .rating-text {
       font-size: 0.85rem;
+    }
+
+    .card-body-custom {
+      padding: 0.8rem;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .artisan-card {
+    .card-image-container {
+      height: 140px;
+    }
+
+    .artisan-name {
+      font-size: 1rem;
     }
   }
 }

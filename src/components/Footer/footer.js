@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom"; // <-- Import Link
+import { Link } from "react-router-dom";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 import "./Footer.scss";
 
@@ -8,11 +8,12 @@ const Footer = () => {
   return (
     <footer className="site-footer">
       <Container>
-        {/* Section principale : Logo + Adresse + Réseaux sociaux */}
+        {/* Section principale */}
         <Row className="footer-content align-items-center">
           <Col xs={12}>
             <div className="footer-main">
               <div className="top-section">
+                {/* Logo */}
                 <div className="footer-brand">
                   <img
                     src="/logo.png"
@@ -20,7 +21,7 @@ const Footer = () => {
                     className="footer-logo"
                   />
                 </div>
-
+                {/* Contact */}
                 <div className="contact-info">
                   <p className="contact-text">
                     LYON, 101 cours Charlemagne, CS 20033, 69242 LYON CEDEX 03,
@@ -29,7 +30,7 @@ const Footer = () => {
                     +33 (0)4 26 73 40 00
                   </p>
                 </div>
-
+                {/* Réseaux sociaux */}
                 <div className="social-links">
                   <a
                     href="https://facebook.com"
@@ -64,7 +65,7 @@ const Footer = () => {
           </Col>
         </Row>
 
-        {/* Liens légaux sur toute la largeur */}
+        {/* Liens légaux */}
         <Row className="footer-bottom">
           <Col>
             <div className="legal-links">
