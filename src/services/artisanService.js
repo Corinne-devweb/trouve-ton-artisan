@@ -156,7 +156,10 @@ class ArtisanService {
       about: artisan.about || "",
       email: artisan.email || "",
       website: artisan.website || "",
-      top: artisan.top === "VRAI" || artisan.top === true || artisan.top === 1,
+      top:
+        artisan.is_top === "VRAI" ||
+        artisan.is_top === true ||
+        artisan.is_top === 1,
     }));
   }
 
@@ -180,7 +183,10 @@ class ArtisanService {
       about: artisan.about || "",
       email: artisan.email || "",
       website: artisan.website || "",
-      top: artisan.top === "VRAI" || artisan.top === true || artisan.top === 1,
+      top:
+        artisan.is_top === "VRAI" ||
+        artisan.is_top === true ||
+        artisan.is_top === 1,
     };
   }
 

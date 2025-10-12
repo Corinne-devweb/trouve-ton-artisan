@@ -81,7 +81,7 @@ app.get("/api/artisans/top", (req, res) => {
     FROM artisans a
     JOIN specialties s ON a.specialty_id = s.id
     JOIN categories c ON a.category_id = c.id
-    WHERE a.top = 'VRAI'
+    WHERE a.is_top = 'VRAI'
     ORDER BY a.rating DESC
     LIMIT 3
   `;
