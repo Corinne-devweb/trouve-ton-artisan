@@ -11,6 +11,7 @@ import Footer from "../src/components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import ArtisansList from "./pages/ArtisansList/ArtisansList";
 import ArtisanDetail from "./pages/ArtisanDetail/ArtisanDetail";
+import Category from "./pages/Category/Category";
 import DonneesPersonnelles from "./pages/DonneesPersonnelles/DonneesPersonnelles";
 import MentionsLegales from "./pages/MentionsLegales/MentionsLegales";
 import Contacts from "./pages/Contacts/Contacts";
@@ -31,31 +32,17 @@ function App() {
             {/* Page d'accueil */}
             <Route path="/" element={<Home />} />
 
-            {/* Pages des catégories d'artisans */}
-            <Route
-              path="/batiment"
-              element={<ArtisansList category="batiment" />}
-            />
-            <Route
-              path="/services"
-              element={<ArtisansList category="services" />}
-            />
-            <Route
-              path="/fabrication"
-              element={<ArtisansList category="fabrication" />}
-            />
-            <Route
-              path="/alimentation"
-              element={<ArtisansList category="alimentation" />}
-            />
+            {/* Catégories - Route dynamique */}
+            <Route path="/category/:categoryName" element={<Category />} />
 
-            {/* Résultats de recherche */}
+            {/* Recherche */}
+            <Route path="/search" element={<ArtisansList />} />
             <Route path="/search/:query" element={<ArtisansList />} />
 
-            {/* Détail d'un artisan */}
+            {/* Détail artisan */}
             <Route path="/artisan/:id" element={<ArtisanDetail />} />
 
-            {/* Pages légales et informatives */}
+            {/* Pages légales */}
             <Route path="/mentions-legales" element={<MentionsLegales />} />
             <Route
               path="/donnees-personnelles"

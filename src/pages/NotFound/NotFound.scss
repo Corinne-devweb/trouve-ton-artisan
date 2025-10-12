@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 
 .not-found-page {
-  background-color: $bg-primary; // #f1f8fc
+  background-color: $bg-primary;
   min-height: calc(100vh - 200px);
   display: flex;
   align-items: center;
@@ -26,7 +26,7 @@
 
     .error-subtitle {
       font-size: $font-size-h2;
-      color: $title-color; // #00497c
+      color: $title-color;
       font-weight: 600;
       margin-bottom: $spacer-lg;
 
@@ -41,7 +41,7 @@
 
     .error-description {
       font-size: $font-size-lg;
-      color: $text-primary; // #384050
+      color: $text-primary;
       line-height: 1.6;
       margin-bottom: $spacer-xxl;
       max-width: 600px;
@@ -119,7 +119,7 @@
   }
 }
 
-// Animation d'apparition
+// Animation
 .not-found-page {
   animation: fadeIn 0.8s ease-in-out;
 }

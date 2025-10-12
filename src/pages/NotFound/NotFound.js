@@ -14,20 +14,17 @@ const NotFound = () => {
         <Row className="justify-content-center text-center">
           <Col lg={8} md={10}>
             <div className="not-found-content">
-              {/* Image 404 */}
               <div className="not-found-image">
                 <img
                   src="/images/404-illustration.png"
                   alt="Page non trouvée"
                   className="error-image"
                   onError={(e) => {
-                    // Image de fallback si l'image 404 n'est pas disponible
                     e.target.style.display = "none";
                   }}
                 />
               </div>
 
-              {/* Texte d'erreur */}
               <h1 className="error-title">404</h1>
               <h2 className="error-subtitle">Page non trouvée</h2>
               <p className="error-description">
@@ -36,7 +33,6 @@ const NotFound = () => {
                 trouver l'artisan qui vous correspond.
               </p>
 
-              {/* Boutons d'action */}
               <div className="error-actions">
                 <Button
                   as={Link}

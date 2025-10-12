@@ -7,12 +7,38 @@ import {
   FaRegStar,
   FaMapMarkerAlt,
 } from "react-icons/fa";
+import ArtisanService from "../../services/artisanService";
 import "./ArtisanCard.scss";
 
 const ArtisanCard = ({ artisan, featured = false, disableLink = false }) => {
   const [imgError, setImgError] = useState(false);
 
-  // Fonction pour afficher les étoiles de notation
+  // Génère une image avatar si l'image de l'artisan n'existe pas
+  const generateAvatarImage = () => {
+    const name = encodeURIComponent(artisan.name);
+    const backgroundColor = getColorFromSpecialty(artisan.specialty);
+    return `https://ui-avatars.com/api/?name=${name}&size=150&background=${backgroundColor}&color=fff&font-size=0.6`;
+  };
+
+  // Couleur basée sur la spécialité
+  const getColorFromSpecialty = (specialty) => {
+    const colors = {
+      Boucher: "dc3545",
+      Boulanger: "fd7e14",
+      Chocolatier: "8b4513",
+      Bijoutier: "ffc107",
+      Chauffagiste: "dc3545",
+      Menuisier: "8b4513",
+      Electricien: "ffc107",
+      Plombier: "0dcaf0",
+      Coiffeur: "e83e8c",
+      Maçon: "6c757d",
+      Peintre: "20c997",
+    };
+    return colors[specialty] || "6c757d";
+  };
+
+  // Affiche les étoiles de notation
   const renderStars = (rating, reviewCount) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -39,17 +65,22 @@ const ArtisanCard = ({ artisan, featured = false, disableLink = false }) => {
     );
   };
 
-  // Contenu principal de la carte
   const cardContent = (
     <>
       <div className="card-image-container">
         {imgError ? (
-          <div className="image-fallback">{artisan.name}</div>
+          <div className="image-fallback">
+            <img
+              src={generateAvatarImage()}
+              alt={artisan.name}
+              className="fallback-avatar"
+            />
+          </div>
         ) : (
           <Card.Img
             variant="top"
-            src={artisan.image}
-            alt={artisan.name}
+            src={ArtisanService.getArtisanImage(artisan)}
+            alt={`${artisan.specialty} - ${artisan.name}`}
             className="card-image"
             onError={() => setImgError(true)}
           />
@@ -62,13 +93,8 @@ const ArtisanCard = ({ artisan, featured = false, disableLink = false }) => {
         <Card.Text className="artisan-specialty">{artisan.specialty}</Card.Text>
         <div className="artisan-location">
           <FaMapMarkerAlt className="location-icon" />
-          <span>Localisation : {artisan.location}</span>
+          <span>{artisan.location}</span>
         </div>
-        {artisan.description && (
-          <Card.Text className="artisan-description">
-            {artisan.description}
-          </Card.Text>
-        )}
       </Card.Body>
     </>
   );
@@ -76,7 +102,7 @@ const ArtisanCard = ({ artisan, featured = false, disableLink = false }) => {
   return (
     <Card className={`artisan-card ${featured ? "featured-card" : ""}`}>
       {disableLink ? (
-        <div className="card-link">{cardContent}</div>
+        <div className="card-content">{cardContent}</div>
       ) : (
         <Link to={`/artisan/${artisan.id}`} className="card-link">
           {cardContent}

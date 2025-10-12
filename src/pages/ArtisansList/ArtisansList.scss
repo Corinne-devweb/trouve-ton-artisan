@@ -1,8 +1,6 @@
 @import '../../styles/variables';
 
-/* ===========================
-   Cartes Artisan
-=========================== */
+// Cartes Artisan
 .artisan-list-card {
   background-color: $primary-blue;
   border: none;
@@ -168,9 +166,7 @@
   }
 }
 
-/* ===========================
-   Responsive cartes
-=========================== */
+// Responsive
 @media (max-width: $breakpoint-lg) {
   .artisan-list-card {
     .card-body-custom {
@@ -208,9 +204,7 @@
   }
 }
 
-/* ===========================
-   Barre de recherche centrée
-=========================== */
+// Barre de recherche centrée
 .search-form-center {
   display: flex;
   justify-content: center;
@@ -218,7 +212,7 @@
 
   .search-container {
     display: flex;
-    max-width: 400px; // largeur max
+    max-width: 400px;
     width: 100%;
     gap: 8px;
 

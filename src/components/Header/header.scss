@@ -1,11 +1,14 @@
-@import './../../styles/variables'; // Assure-toi que tes variables SASS sont importées
+@import './../../styles/variables';
+
 .site-header {
   background-color: #f1f8fc;
   max-height: 110px;
   width: 100%;
+  position: relative;
+  z-index: 1000;
 
   .logo-image {
-    max-height: 80px; /* plus gros que le footer */
+    max-height: 80px;
     width: auto;
   }
 
@@ -19,6 +22,7 @@
     }
   }
 
+  // Barre de recherche
   .search-input {
     height: 38px;
     border-radius: 4px 0 0 4px;
@@ -38,8 +42,18 @@
   }
 
   .navbar-toggler {
-    font-size: 24px; /* hamburger ou croix */
+    font-size: 24px;
     border: none;
     background: transparent;
+  }
+
+  .navbar-collapse {
+    position: relative;
+    z-index: 1001;
+    background-color: #f1f8fc;
+    
+    @media (max-width: 991px) {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
   }
 }

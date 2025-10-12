@@ -1,101 +1,190 @@
-// services/artisanService.js
-// Ce service sera utilisé quand l'API sera prête
-
 const API_BASE_URL =
   process.env.REACT_APP_API_URL || "http://localhost:3001/api";
 
 class ArtisanService {
-  // Récupérer tous les artisans
+  // Récupère tous les artisans
   static async getAllArtisans() {
     try {
       const response = await fetch(`${API_BASE_URL}/artisans`);
       if (!response.ok) {
-        throw new Error("Erreur lors de la récupération des artisans");
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-      return await response.json();
+      const data = await response.json();
+      return this.formatArtisansData(data);
     } catch (error) {
-      console.error("Erreur API:", error);
-      // Fallback sur les données mockées en cas d'erreur
-      return this.getMockArtisans();
+      console.error("Erreur lors de la récupération des artisans:", error);
+      throw error;
     }
   }
 
-  // Récupérer les artisans par catégorie
-  static async getArtisansByCategory(category) {
+  // Récupère les artisans "top" pour la page d'accueil
+  static async getTopArtisans() {
+    try {
+      const response = await fetch(`${API_BASE_URL}/artisans/top`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      return this.formatArtisansData(data);
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération des artisans du mois:",
+        error
+      );
+      throw error;
+    }
+  }
+
+  // Récupère les artisans par catégorie
+  static async getArtisansByCategory(categoryId) {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/artisans?category=${category}`
+        `${API_BASE_URL}/artisans/category/${categoryId}`
       );
+
       if (!response.ok) {
-        throw new Error("Erreur lors de la récupération des artisans");
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-      return await response.json();
+
+      const data = await response.json();
+      return this.formatArtisansData(data);
     } catch (error) {
       console.error("Erreur API:", error);
-      // Fallback sur les données mockées filtrées
-      const mockData = this.getMockArtisans();
-      return mockData.filter((artisan) => artisan.category === category);
+      throw error;
     }
   }
 
-  // Rechercher des artisans
+  // Recherche d'artisans
   static async searchArtisans(query) {
     try {
       const response = await fetch(
         `${API_BASE_URL}/artisans/search?q=${encodeURIComponent(query)}`
       );
       if (!response.ok) {
-        throw new Error("Erreur lors de la recherche");
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-      return await response.json();
+      const data = await response.json();
+      return this.formatArtisansData(data);
     } catch (error) {
-      console.error("Erreur API:", error);
-      // Fallback sur la recherche locale
-      const mockData = this.getMockArtisans();
-      const searchTerm = query.toLowerCase();
-      return mockData.filter((artisan) =>
-        artisan.name.toLowerCase().includes(searchTerm)
-      );
+      console.error("Erreur lors de la recherche:", error);
+      throw error;
     }
   }
 
-  // Récupérer un artisan par ID
+  // Récupère un artisan par ID
   static async getArtisanById(id) {
     try {
       const response = await fetch(`${API_BASE_URL}/artisans/${id}`);
       if (!response.ok) {
-        throw new Error("Artisan non trouvé");
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-      return await response.json();
+      const data = await response.json();
+      return this.formatSingleArtisanData(data);
     } catch (error) {
-      console.error("Erreur API:", error);
-      // Fallback sur les données mockées
-      const mockData = this.getMockArtisans();
-      return mockData.find((artisan) => artisan.id === parseInt(id));
+      console.error("Erreur lors de la récupération de l'artisan:", error);
+      throw error;
     }
   }
 
-  // Récupérer les catégories depuis la BDD
+  // Récupère les catégories
   static async getCategories() {
     try {
       const response = await fetch(`${API_BASE_URL}/categories`);
       if (!response.ok) {
-        throw new Error("Erreur lors de la récupération des catégories");
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-      return await response.json();
+      const categories = await response.json();
+      return categories.map((cat) => ({
+        id: cat.id,
+        name: cat.name,
+        slug: cat.name
+          .toLowerCase()
+          .replace(/[éèê]/g, "e")
+          .replace(/[àâ]/g, "a")
+          .replace(/[ùû]/g, "u")
+          .replace(/[ïî]/g, "i")
+          .replace(/[ôö]/g, "o")
+          .replace(/ç/g, "c")
+          .replace(/\s+/g, "-"),
+      }));
     } catch (error) {
-      console.error("Erreur API:", error);
-      // Fallback sur les catégories par défaut
-      return [
-        { id: 1, name: "Bâtiment", slug: "batiment" },
-        { id: 2, name: "Services", slug: "services" },
-        { id: 3, name: "Fabrication", slug: "fabrication" },
-        { id: 4, name: "Alimentation", slug: "alimentation" },
-      ];
+      console.error("Erreur lors de la récupération des catégories:", error);
+      throw error;
     }
   }
 
-  // Upload d'image d'artisan
+  // Envoie un message de contact
+  static async sendContactMessage(contactData) {
+    try {
+      const response = await fetch(`${API_BASE_URL}/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contactData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Erreur lors de l'envoi du message");
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error("Erreur envoi contact:", error);
+      throw error;
+    }
+  }
+
+  // Formate les données des artisans
+  static formatArtisansData(artisans) {
+    if (!Array.isArray(artisans)) {
+      console.error("formatArtisansData: données non valides", artisans);
+      return [];
+    }
+
+    return artisans.map((artisan) => ({
+      id: artisan.id,
+      name: artisan.name,
+      specialty: artisan.specialty_name || artisan.specialty,
+      category: artisan.category_name?.toLowerCase() || artisan.category,
+      location: artisan.city || "Non spécifié",
+      rating: parseFloat(artisan.rating || artisan.note) || 0,
+      reviewCount: artisan.review_count || Math.floor(Math.random() * 300) + 50,
+      image: artisan.image || null,
+      hasCustomImage: !!artisan.image,
+      about: artisan.about || "",
+      email: artisan.email || "",
+      website: artisan.website || "",
+      top: artisan.top === "VRAI" || artisan.top === true || artisan.top === 1,
+    }));
+  }
+
+  // Formate un artisan unique
+  static formatSingleArtisanData(artisan) {
+    if (!artisan) {
+      console.error("formatSingleArtisanData: artisan non défini");
+      return null;
+    }
+
+    return {
+      id: artisan.id,
+      name: artisan.name,
+      specialty: artisan.specialty_name || artisan.specialty,
+      category: artisan.category_name?.toLowerCase() || artisan.category,
+      location: artisan.city || "Non spécifié",
+      rating: parseFloat(artisan.rating || artisan.note) || 0,
+      reviewCount: artisan.review_count || Math.floor(Math.random() * 300) + 50,
+      image: artisan.image || null,
+      hasCustomImage: !!artisan.image,
+      about: artisan.about || "",
+      email: artisan.email || "",
+      website: artisan.website || "",
+      top: artisan.top === "VRAI" || artisan.top === true || artisan.top === 1,
+    };
+  }
+
+  // Upload d'image
   static async uploadArtisanImage(artisanId, imageFile) {
     try {
       const formData = new FormData();
@@ -106,15 +195,11 @@ class ArtisanService {
         {
           method: "POST",
           body: formData,
-          headers: {
-            // Note: Ne pas définir Content-Type pour FormData
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // Si auth requise
-          },
         }
       );
 
       if (!response.ok) {
-        throw new Error("Erreur lors de l'upload de l'image");
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       return await response.json();
@@ -124,131 +209,12 @@ class ArtisanService {
     }
   }
 
-  // Données mockées (à supprimer quand l'API sera prête)
-  static getMockArtisans() {
-    return [
-      {
-        id: 1,
-        name: "Boucherie Dumont",
-        specialty: "Boucherie",
-        category: "alimentation",
-        location: "Lyon",
-        rating: 4.5,
-        reviewCount: 340,
-        image: null, // Pas d'image personnalisée
-        hasCustomImage: false,
-      },
-      {
-        id: 2,
-        name: "Au pain chaud",
-        specialty: "Boulangerie",
-        category: "alimentation",
-        location: "Montpellier",
-        rating: 4.5,
-        reviewCount: 125,
-        image: null,
-        hasCustomImage: false,
-      },
-      {
-        id: 3,
-        name: "Claude Dunn",
-        specialty: "Bijouterie",
-        category: "fabrication",
-        location: "Aix-les-bains",
-        rating: 4.2,
-        reviewCount: 85,
-        image: null,
-        hasCustomImage: false,
-      },
-      {
-        id: 4,
-        name: "Orville Salmon",
-        specialty: "Chauffagiste",
-        category: "services",
-        location: "Evian",
-        rating: 5.0,
-        reviewCount: 78,
-        image: null,
-        hasCustomImage: false,
-      },
-      {
-        id: 5,
-        name: "Martin Construction",
-        specialty: "Maçonnerie",
-        category: "batiment",
-        location: "Lyon",
-        rating: 4.7,
-        reviewCount: 156,
-        image: null,
-        hasCustomImage: false,
-      },
-      {
-        id: 6,
-        name: "Électro Services",
-        specialty: "Électricien",
-        category: "batiment",
-        location: "Grenoble",
-        rating: 4.3,
-        reviewCount: 92,
-        image: null,
-        hasCustomImage: false,
-      },
-      {
-        id: 7,
-        name: "Plomberie Express",
-        specialty: "Plomberie",
-        category: "services",
-        location: "Annecy",
-        rating: 4.6,
-        reviewCount: 203,
-        image: null,
-        hasCustomImage: false,
-      },
-      {
-        id: 8,
-        name: "Atelier Menuiserie",
-        specialty: "Menuiserie",
-        category: "fabrication",
-        location: "Chambéry",
-        rating: 4.8,
-        reviewCount: 67,
-        image: null,
-        hasCustomImage: false,
-      },
-    ];
-  }
-
-  // Fonction utilitaire pour obtenir l'image appropriée
+  // Retourne l'URL de l'image de l'artisan
   static getArtisanImage(artisan) {
-    // Si l'artisan a sa propre image, l'utiliser
-    if (artisan.image && artisan.hasCustomImage) {
-      return `${API_BASE_URL}/uploads/artisans/${artisan.image}`;
+    if (artisan.image) {
+      return `http://localhost:3001/uploads/artisans/${artisan.image}`;
     }
-
-    // Sinon, utiliser une image par défaut selon la spécialité
-    const defaultImages = {
-      Boucherie:
-        "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=150&h=150&fit=crop&crop=center",
-      Boulangerie:
-        "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=150&h=150&fit=crop&crop=center",
-      Bijouterie:
-        "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=150&h=150&fit=crop&crop=center",
-      Chauffagiste:
-        "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=150&h=150&fit=crop&crop=center",
-      Maçonnerie:
-        "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=150&h=150&fit=crop&crop=center",
-      Électricien:
-        "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=150&h=150&fit=crop&crop=center",
-      Plomberie:
-        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=150&h=150&fit=crop&crop=center",
-      Menuiserie:
-        "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=150&h=150&fit=crop&crop=center",
-      // Image générique pour les nouvelles spécialités
-      default:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=center",
-    };
-
-    return defaultImages[artisan.specialty] || defaultImages["default"];
+    return `http://localhost:3001/uploads/artisans/default.jpg`;
   }
 }
 
