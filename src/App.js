@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 
 // Composants
-import Header from "../src/components/Header/Header";
-import Footer from "../src/components/Footer/Footer";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 // Pages
 import Home from "./pages/Home/Home";
