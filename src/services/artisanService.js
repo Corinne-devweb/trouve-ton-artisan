@@ -1,5 +1,6 @@
 const API_BASE_URL =
-  process.env.REACT_APP_API_URL || "http://localhost:3001/api";
+  process.env.REACT_APP_API_URL ||
+  "https://trouve-ton-artisan-production.up.railway.app/api";
 
 class ArtisanService {
   // Récupère tous les artisans
@@ -218,9 +219,9 @@ class ArtisanService {
   // Retourne l'URL de l'image de l'artisan
   static getArtisanImage(artisan) {
     if (artisan.image) {
-      return `http://localhost:3001/uploads/artisans/${artisan.image}`;
+      return `https://trouve-ton-artisan-production.up.railway.app/uploads/artisans/${artisan.image}`;
     }
-    return `http://localhost:3001/uploads/artisans/default.jpg`;
+    return `https://trouve-ton-artisan-production.up.railway.app/uploads/artisans/default.jpg`;
   }
 }
 
